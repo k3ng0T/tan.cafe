@@ -11,3 +11,5 @@
 @media(max-width:700px){.hero-seal{width:88px;height:88px}}
 @media(max-width:700px){.hero h1{overflow-wrap:anywhere}.hero h1 em{display:block}}
 .button-arrow{width:16px;height:16px;flex:none}
+.brand-animation{display:block;width:49px;height:49px;object-fit:cover;border-radius:50%;mix-blend-mode:multiply;flex:none}
+@media(max-width:700px){.brand-animation{width:40px;height:40px}}
