@@ -85,21 +85,8 @@ $('review-order').addEventListener('click', () => {
 $('close-order').addEventListener('click', () => { $('order-dialog').close(); $('open-cart').focus(); });
 $('back-to-cart').addEventListener('click', () => { $('order-dialog').close(); openCart(); });
 for (const dialog of [$('cart-dialog'), $('order-dialog')]) dialog.addEventListener('click', event => { if (event.target !== dialog) return; const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); });
-const logoAnimation = $('logo-animation');
-const animationToggle = $('logo-animation-toggle');
-function syncAnimationToggle() {
-  const paused = logoAnimation.paused;
-  animationToggle.textContent = paused ? '▶' : 'Ⅱ';
-  animationToggle.setAttribute('aria-label', paused ? 'Включить анимацию логотипа' : 'Приостановить анимацию логотипа');
-  animationToggle.title = paused ? 'Включить анимацию' : 'Приостановить анимацию';
-}
-logoAnimation.addEventListener('play', syncAnimationToggle);
-logoAnimation.addEventListener('pause', syncAnimationToggle);
-animationToggle.addEventListener('click', () => {
-  if (logoAnimation.paused) logoAnimation.play().catch(syncAnimationToggle);
-  else logoAnimation.pause();
-});
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) logoAnimation.play().catch(syncAnimationToggle);
-syncAnimationToggle();
+// Muted inline playback is supported by mobile browsers. The poster remains
+// visible if a device's power-saving settings prevent automatic playback.
+$('logo-animation').play().catch(() => {});
 renderMenu(); updateCart();
 
