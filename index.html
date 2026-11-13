@@ -7,55 +7,51 @@
   <meta name="description" content="Меню семейного кафе ТАҢ. Выберите блюда и покажите заказ официанту.">
   <title>Меню — ТАҢ Family Cafe</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
-<body>
-  <div class="intro-screen" id="intro-screen" aria-label="ТАҢ Family Cafe">
-    <video id="intro-video" muted playsinline preload="auto" poster="assets/tan-logo.png" aria-hidden="true"><source src="assets/tan-logo-intro-3x.mp4" type="video/mp4"></video>
+<body class="choosing-language">
+  <div class="intro-screen" id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="language-heading">
+    <div class="intro-content">
+      <div class="intro-logo"><video id="intro-video" muted playsinline preload="auto" poster="assets/tan-logo.png" aria-hidden="true"><source src="assets/tan-logo-intro-3x.mp4" type="video/mp4"></video><img id="intro-still" src="assets/tan-logo.png" alt="ТАҢ Family Cafe" hidden></div>
+      <p id="language-heading" class="language-heading">Тілді таңдаңыз <span>·</span> Выберите язык</p>
+      <div class="language-choices"><button type="button" data-language="kk" lang="kk">Қазақша</button><button type="button" data-language="ru" lang="ru">Русский</button></div>
+    </div>
   </div>
   <script>
     (() => {
-      const screen = document.getElementById('intro-screen');
       const video = document.getElementById('intro-video');
+      const still = document.getElementById('intro-still');
       let finished = false;
-      const finish = () => {
-        if (finished) return;
-        finished = true;
-        screen.classList.add('intro-finished');
-        setTimeout(() => screen.remove(), 350);
-      };
-      video.addEventListener('ended', finish, { once: true });
-      video.addEventListener('error', finish, { once: true });
-      video.play().catch(finish);
-      setTimeout(finish, 5000);
+      const showStill = () => { if (finished) return; finished = true; video.hidden = true; still.hidden = false; };
+      video.addEventListener('ended', showStill, { once:true });
+      video.addEventListener('error', showStill, { once:true });
+      video.play().catch(showStill);
+      setTimeout(showStill, 5000);
     })();
   </script>
-  <a class="skip-link" href="#menu">Перейти к меню</a>
-  <header class="header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="ТАҢ Family Cafe — наверх"><div class="brand-animation-frame" style="width:40px;height:40px;flex:0 0 40px;border-radius:50%;overflow:hidden"><video id="logo-animation" class="brand-animation" width="40" height="40" style="display:block;width:40px;height:40px;object-fit:cover;border-radius:50%" autoplay muted loop playsinline preload="auto" poster="assets/tan-logo.png" aria-hidden="true"><source src="assets/tan-logo-square.mp4" type="video/mp4"></video></div><span><strong>ТАҢ</strong><small>FAMILY CAFE</small></span></a>
-      <a class="header-menu" href="#menu">Меню</a>
-      <button class="header-cart" id="open-cart" aria-haspopup="dialog" aria-controls="cart-dialog"><span aria-hidden="true">◌</span> Корзина <b id="cart-count">0</b></button>
-    </div>
-  </header>
-  <main id="top">
+  <a class="skip-link" href="#menu" data-i18n="skip" inert>Перейти к меню</a>
+  <header class="header" inert><div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="ТАҢ Family Cafe"><div class="brand-animation-frame" style="width:40px;height:40px;flex:0 0 40px;border-radius:50%;overflow:hidden"><video id="logo-animation" class="brand-animation" width="40" height="40" style="display:block;width:40px;height:40px;object-fit:cover;border-radius:50%" autoplay muted loop playsinline preload="auto" poster="assets/tan-logo.png" aria-hidden="true"><source src="assets/tan-logo-square.mp4" type="video/mp4"></video></div><span><strong>ТАҢ</strong><small>FAMILY CAFE</small></span></a>
+    <a class="header-menu" href="#menu" data-i18n="menu">Меню</a>
+    <button class="language-switch" id="language-switch" type="button" aria-label="Тіл / Язык">ҚАЗ</button>
+    <button class="header-cart" id="open-cart" aria-haspopup="dialog" aria-controls="cart-dialog"><span aria-hidden="true">◌</span> <span data-i18n="cart">Корзина</span> <b id="cart-count">0</b></button>
+  </div></header>
+  <main id="top" inert>
     <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy"><p class="eyebrow"><span>✳</span> СЕМЕЙНОЕ КАФЕ</p><h1 id="hero-title">Вкусные моменты<br><em>начинаются здесь.</em></h1><p class="hero-description">Выбирайте любимые блюда и покажите свой выбор официанту.</p><a class="primary-button" href="#menu">Выбрать блюда <svg class="button-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 19 19 5M7 5h12v12"/></svg></a></div>
-      <div class="hero-image"><img src="assets/breakfast.png" alt="" fetchpriority="high"><span>Иллюстрация сервировки</span></div>
+      <div class="hero-copy"><p class="eyebrow"><span>✳</span> <span data-i18n="family">СЕМЕЙНОЕ КАФЕ</span></p><h1 id="hero-title"><span data-i18n="hero1">Вкусные моменты</span><br><em data-i18n="hero2">начинаются здесь.</em></h1><p class="hero-description" data-i18n="description">Выбирайте любимые блюда и покажите свой выбор официанту.</p><a class="primary-button" href="#menu"><span data-i18n="choose">Выбрать блюда</span><svg class="button-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 19 19 5M7 5h12v12"/></svg></a></div>
+      <div class="hero-image"><img src="assets/breakfast.png" alt="" fetchpriority="high"><span data-i18n="serving">Иллюстрация сервировки</span></div>
     </section>
-    <section class="menu-section wrap" id="menu" aria-labelledby="menu-title">
-      <div class="section-heading"><div><p class="eyebrow">ВЫБИРАЙТЕ С ЛЮБОВЬЮ</p><h2 id="menu-title">Наше меню<span>.</span></h2></div><p>Все цены в тенге ₸</p></div>
-      <div class="menu-layout">
-        <aside class="menu-sidebar" aria-label="Категории меню"><p class="sidebar-title">КАТЕГОРИИ</p><div id="category-list" class="category-list"></div></aside>
-        <div class="menu-content"><div class="menu-toolbar"><div><h3 id="category-title"></h3><p id="result-count" class="result-count" aria-live="polite"></p></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="dish-search" type="search" placeholder="Найти блюдо" aria-label="Поиск по меню" autocomplete="off"></label></div><div id="dish-grid" class="dish-grid"></div><div id="empty-search" class="empty-search" hidden><h3>Ничего не нашли</h3><p>Попробуйте другое название.</p><button id="reset-search" class="secondary-button">Показать всё меню</button></div></div>
+    <section class="menu-section wrap" id="menu" aria-labelledby="menu-title"><div class="section-heading"><div><p class="eyebrow" data-i18n="love">ВЫБИРАЙТЕ С ЛЮБОВЬЮ</p><h2 id="menu-title"><span data-i18n="ourMenu">Наше меню</span><span>.</span></h2></div><p data-i18n="prices">Все цены в тенге ₸</p></div>
+      <div class="menu-layout"><aside class="menu-sidebar" id="menu-sidebar" aria-label="Категории меню"><p class="sidebar-title" data-i18n="categories">КАТЕГОРИИ</p><div id="category-list" class="category-list"></div></aside>
+        <div class="menu-content"><div class="menu-toolbar"><div><h3 id="category-title"></h3><p id="result-count" class="result-count" aria-live="polite"></p></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="dish-search" type="search" placeholder="Найти блюдо" aria-label="Поиск по меню" autocomplete="off"></label></div><div id="dish-grid" class="dish-grid"></div><div id="empty-search" class="empty-search" hidden><h3 data-i18n="none">Ничего не нашли</h3><p data-i18n="tryOther">Попробуйте другое название.</p><button id="reset-search" class="secondary-button" data-i18n="showAll">Показать всё меню</button></div></div>
       </div>
     </section>
   </main>
-  <footer class="footer wrap"><span>ТАҢ <small>FAMILY CAFE</small></span><a href="#top">Наверх ↑</a></footer>
-  <button class="mobile-cart" id="mobile-cart" hidden><span>Корзина · <b id="mobile-cart-count"></b></span><strong id="mobile-cart-total"></strong><span aria-hidden="true">→</span></button>
+  <footer class="footer wrap" inert><span>ТАҢ <small>FAMILY CAFE</small></span><a href="#top" data-i18n="up">Наверх ↑</a></footer>
+  <button class="mobile-cart" id="mobile-cart" hidden inert><span><span data-i18n="cart">Корзина</span> · <b id="mobile-cart-count"></b></span><strong id="mobile-cart-total"></strong><span aria-hidden="true">→</span></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <dialog id="cart-dialog" class="cart-dialog" aria-labelledby="cart-heading"><div class="cart-shell"><div class="cart-header"><div><p class="eyebrow">ВАШ ВЫБОР</p><h2 id="cart-heading">Корзина<span>.</span></h2></div><button class="icon-button" id="close-cart" aria-label="Закрыть корзину">×</button></div><div class="cart-body" id="cart-body"></div><div class="cart-footer" id="cart-footer" hidden><div class="cart-total"><span>Итого</span><strong id="cart-total"></strong></div><button class="primary-button checkout-button" id="review-order">Показать официанту <span aria-hidden="true">→</span></button><p>Заказ не отправляется автоматически.</p></div></div></dialog>
-  <dialog id="order-dialog" class="order-dialog" aria-labelledby="order-heading"><div class="order-top"><span class="order-mark">✳</span><button class="icon-button" id="close-order" aria-label="Закрыть заказ">×</button></div><p class="eyebrow">ТАҢ FAMILY CAFE</p><h2 id="order-heading">Ваш заказ<span>.</span></h2><p class="order-intro">Покажите этот экран официанту</p><div id="order-summary"></div><button class="secondary-button back-button" id="back-to-cart">Изменить заказ</button></dialog>
-  <script type="module" src="app.js?v=5"></script>
+  <dialog id="cart-dialog" class="cart-dialog" aria-labelledby="cart-heading"><div class="cart-shell"><div class="cart-header"><div><p class="eyebrow" data-i18n="yourChoice">ВАШ ВЫБОР</p><h2 id="cart-heading"><span data-i18n="cart">Корзина</span><span>.</span></h2></div><button class="icon-button" id="close-cart" aria-label="Закрыть корзину">×</button></div><div class="cart-body" id="cart-body"></div><div class="cart-footer" id="cart-footer" hidden><div class="cart-total"><span data-i18n="total">Итого</span><strong id="cart-total"></strong></div><button class="primary-button checkout-button" id="review-order"><span data-i18n="showWaiter">Показать официанту</span><span aria-hidden="true">→</span></button><p data-i18n="notSent">Заказ не отправляется автоматически.</p></div></div></dialog>
+  <dialog id="order-dialog" class="order-dialog" aria-labelledby="order-heading"><div class="order-top"><span class="order-mark">✳</span><button class="icon-button" id="close-order" aria-label="Закрыть заказ">×</button></div><p class="eyebrow">ТАҢ FAMILY CAFE</p><h2 id="order-heading"><span data-i18n="yourOrder">Ваш заказ</span><span>.</span></h2><p class="order-intro" data-i18n="showScreen">Покажите этот экран официанту</p><div id="order-summary"></div><button class="secondary-button back-button" id="back-to-cart" data-i18n="editOrder">Изменить заказ</button></dialog>
+  <script type="module" src="app.js?v=6"></script>
 </body>
 </html>
