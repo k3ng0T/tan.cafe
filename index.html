@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f0e8">
+  <meta name="description" content="Меню семейного кафе ТАҢ. Выберите блюда и покажите заказ официанту.">
+  <title>Меню — ТАҢ Family Cafe</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#menu">Перейти к меню</a>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="ТАҢ Family Cafe — наверх"><img src="assets/tan-logo.png" alt=""><span><strong>ТАҢ</strong><small>FAMILY CAFE</small></span></a>
+      <a class="header-menu" href="#menu">Меню</a>
+      <button class="header-cart" id="open-cart" aria-haspopup="dialog" aria-controls="cart-dialog"><span aria-hidden="true">◌</span> Корзина <b id="cart-count">0</b></button>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow"><span>✳</span> СЕМЕЙНОЕ КАФЕ</p><h1 id="hero-title">Вкусные моменты<br><em>начинаются здесь.</em></h1><p class="hero-description">Выбирайте любимые блюда и покажите свой выбор официанту.</p><a class="primary-button" href="#menu">Выбрать блюда <span aria-hidden="true">↗</span></a></div>
+      <div class="hero-image"><img src="assets/breakfast.png" alt="" fetchpriority="high"><span>Иллюстрация сервировки</span><div class="hero-seal"><video id="logo-animation" muted loop playsinline preload="metadata" poster="assets/tan-logo.png" aria-label="Анимированный логотип ТАҢ Family Cafe"><source src="assets/tan-logo-square.mp4" type="video/mp4"></video><button id="logo-animation-toggle" class="animation-toggle" type="button" aria-label="Включить анимацию логотипа" title="Включить анимацию">▶</button></div></div>
+    </section>
+    <section class="menu-section wrap" id="menu" aria-labelledby="menu-title">
+      <div class="section-heading"><div><p class="eyebrow">ВЫБИРАЙТЕ С ЛЮБОВЬЮ</p><h2 id="menu-title">Наше меню<span>.</span></h2></div><p>Все цены в тенге ₸</p></div>
+      <div class="menu-layout">
+        <aside class="menu-sidebar" aria-label="Категории меню"><p class="sidebar-title">КАТЕГОРИИ</p><div id="category-list" class="category-list"></div></aside>
+        <div class="menu-content"><div class="menu-toolbar"><div><h3 id="category-title"></h3><p id="result-count" class="result-count" aria-live="polite"></p></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="dish-search" type="search" placeholder="Найти блюдо" aria-label="Поиск по меню" autocomplete="off"></label></div><div id="dish-grid" class="dish-grid"></div><div id="empty-search" class="empty-search" hidden><h3>Ничего не нашли</h3><p>Попробуйте другое название.</p><button id="reset-search" class="secondary-button">Показать всё меню</button></div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer wrap"><span>ТАҢ <small>FAMILY CAFE</small></span><a href="#top">Наверх ↑</a></footer>
+  <button class="mobile-cart" id="mobile-cart" hidden><span>Корзина · <b id="mobile-cart-count"></b></span><strong id="mobile-cart-total"></strong><span aria-hidden="true">→</span></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="cart-dialog" class="cart-dialog" aria-labelledby="cart-heading"><div class="cart-shell"><div class="cart-header"><div><p class="eyebrow">ВАШ ВЫБОР</p><h2 id="cart-heading">Корзина<span>.</span></h2></div><button class="icon-button" id="close-cart" aria-label="Закрыть корзину">×</button></div><div class="cart-body" id="cart-body"></div><div class="cart-footer" id="cart-footer" hidden><div class="cart-total"><span>Итого</span><strong id="cart-total"></strong></div><button class="primary-button checkout-button" id="review-order">Показать официанту <span aria-hidden="true">→</span></button><p>Заказ не отправляется автоматически.</p></div></div></dialog>
+  <dialog id="order-dialog" class="order-dialog" aria-labelledby="order-heading"><div class="order-top"><span class="order-mark">✳</span><button class="icon-button" id="close-order" aria-label="Закрыть заказ">×</button></div><p class="eyebrow">ТАҢ FAMILY CAFE</p><h2 id="order-heading">Ваш заказ<span>.</span></h2><p class="order-intro">Покажите этот экран официанту</p><div id="order-summary"></div><button class="secondary-button back-button" id="back-to-cart">Изменить заказ</button></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
