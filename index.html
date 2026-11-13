@@ -24,7 +24,7 @@
         screen.classList.add('intro-finished');
         setTimeout(() => screen.remove(), 350);
       };
-      video.playbackRate = 2;
+      video.playbackRate = 3;
       video.addEventListener('ended', finish, { once: true });
       video.addEventListener('error', finish, { once: true });
       video.play().catch(finish);
