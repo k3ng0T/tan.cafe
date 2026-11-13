@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="intro-screen" id="intro-screen" aria-label="ТАҢ Family Cafe">
-    <video id="intro-video" muted playsinline preload="auto" poster="assets/tan-logo.png" aria-hidden="true"><source src="assets/tan-logo-square.mp4" type="video/mp4"></video>
+    <video id="intro-video" muted playsinline preload="auto" poster="assets/tan-logo.png" aria-hidden="true"><source src="assets/tan-logo-intro-3x.mp4" type="video/mp4"></video>
   </div>
   <script>
     (() => {
@@ -24,7 +24,6 @@
         screen.classList.add('intro-finished');
         setTimeout(() => screen.remove(), 350);
       };
-      video.playbackRate = 3;
       video.addEventListener('ended', finish, { once: true });
       video.addEventListener('error', finish, { once: true });
       video.play().catch(finish);
