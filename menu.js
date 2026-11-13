@@ -90,7 +90,15 @@ const rows = {
 
 export const dishes = categories.flatMap(category => rows[category.id].map(([name, price], i) => ({ id: `${category.id}-${i+1}`, category: category.id, name, price })));
 
-// Фотографии блюд: ID позиции → относительный путь к файлу.
-export const dishPhotos = {
-  // 'breakfast-1': 'assets/dishes/ovsyanaya-kasha.jpg',
+// Одинаковые блюда и напитки разных объёмов используют общую иллюстрацию.
+const photoAliases = {
+  'kids-6': 'kids-5', 'kids-7': 'kids-5',
+  'coffee-2': 'coffee-1', 'coffee-3': 'coffee-1',
+  'coffee-5': 'coffee-4', 'coffee-7': 'coffee-6'
 };
+// Сюда можно добавить реальные фотографии кафе, например:
+// 'breakfast-1': 'assets/dishes/ovsyanaya-kasha.jpg'
+export const customDishPhotos = {};
+export const dishPhotos = Object.fromEntries(dishes.map(dish => [
+  dish.id, customDishPhotos[dish.id] || `assets/dishes/${photoAliases[dish.id] || dish.id}.webp`
+]));

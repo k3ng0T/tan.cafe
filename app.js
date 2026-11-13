@@ -1,4 +1,4 @@
-import { categories, dishes, dishPhotos } from './menu.js';
+import { categories, dishes, dishPhotos, customDishPhotos } from './menu.js?v=5';
 
 const $ = id => document.getElementById(id);
 const money = n => `${new Intl.NumberFormat('ru-RU').format(n)} ₸`;
@@ -37,7 +37,7 @@ function renderMenu() {
   $('result-count').textContent = `${n} ${ending}`;
   $('dish-grid').innerHTML = visible.map(d => {
     const photo = dishPhotos[d.id];
-    const visual = photo ? `<img src="${escapeHtml(photo)}" alt="${escapeHtml(d.name)}" loading="lazy" onerror="this.parentElement.classList.add('missing');this.remove()">` : '';
+    const visual = photo ? `<img src="${escapeHtml(photo)}" alt="${escapeHtml(d.name)}" loading="lazy" onerror="this.parentElement.classList.add('missing');this.remove()">${customDishPhotos[d.id] ? '' : '<span class="photo-disclaimer">Фото иллюстративное</span>'}` : '';
     return `<article class="dish-card"><div class="dish-image${photo ? '' : ' missing'}">${visual}<div class="photo-placeholder" aria-hidden="true"><span>✳</span><small>ФОТО СКОРО</small></div></div><div class="dish-info"><p class="dish-category">${escapeHtml(categoryMap.get(d.category).name)}</p><h4>${escapeHtml(d.name)}</h4><div class="dish-footer"><strong>${money(d.price)}</strong><div data-controls="${d.id}">${controls(d)}</div></div></div></article>`;
   }).join('');
   $('empty-search').hidden = visible.length > 0;
