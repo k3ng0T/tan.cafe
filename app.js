@@ -9,6 +9,7 @@ const money = n => `${new Intl.NumberFormat('ru-RU').format(n)} ₸`;
 const items = new Map(dishes.map(d => [d.id, d]));
 const categoryMap = new Map(categories.map(c => [c.id, c]));
 const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const sparkle = '<svg class="sparkle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5c.45 5.4 2.1 7.05 7.5 7.5-5.4.45-7.05 2.1-7.5 7.5-.45-5.4-2.1-7.05-7.5-7.5C9.9 9.55 11.55 7.9 12 2.5Z" fill="currentColor"/><path d="M19 15.5c.18 2.1.82 2.74 2.9 2.92-2.08.18-2.72.82-2.9 2.92-.18-2.1-.82-2.74-2.9-2.92 2.08-.18 2.72-.82 2.9-2.92Z" fill="currentColor"/></svg>';
 let selected = 'breakfast';
 let cart = {};
 try {
@@ -43,7 +44,7 @@ function renderMenu() {
   $('dish-grid').innerHTML = visible.map(d => {
     const name = escapeHtml(dishName(d)), photo = dishPhotos[d.id];
     const visual = photo ? `<img src="${escapeHtml(photo)}" alt="${name}" loading="lazy" onerror="this.parentElement.classList.add('missing');this.remove()">${customDishPhotos[d.id] ? '' : `<span class="photo-disclaimer">${t('photo')}</span>`}` : '';
-    return `<article class="dish-card"><div class="dish-image${photo ? '' : ' missing'}">${visual}<div class="photo-placeholder" aria-hidden="true"><span>✳</span><small>${t('photoSoon')}</small></div></div><div class="dish-info"><p class="dish-category">${escapeHtml(categoryName(categoryMap.get(d.category)))}</p><h4>${name}</h4><div class="dish-footer"><strong>${money(d.price)}</strong><div data-controls="${d.id}">${controls(d)}</div></div></div></article>`;
+    return `<article class="dish-card"><div class="dish-image${photo ? '' : ' missing'}">${visual}<div class="photo-placeholder" aria-hidden="true">${sparkle}<small>${t('photoSoon')}</small></div></div><div class="dish-info"><p class="dish-category">${escapeHtml(categoryName(categoryMap.get(d.category)))}</p><h4>${name}</h4><div class="dish-footer"><strong>${money(d.price)}</strong><div data-controls="${d.id}">${controls(d)}</div></div></div></article>`;
   }).join('');
   $('empty-search').hidden = visible.length > 0;
   renderCategories();
@@ -51,7 +52,7 @@ function renderMenu() {
 function renderCart() {
   const entries = Object.entries(cart);
   $('cart-footer').hidden = entries.length === 0;
-  if (!entries.length) { $('cart-body').innerHTML = `<div class="empty-cart"><span>✳</span><h3>${t('empty')}</h3><p>${t('addDishes')}</p><button class="secondary-button" id="empty-to-menu">${t('toMenu')}</button></div>`; return; }
+  if (!entries.length) { $('cart-body').innerHTML = `<div class="empty-cart">${sparkle}<h3>${t('empty')}</h3><p>${t('addDishes')}</p><button class="secondary-button" id="empty-to-menu">${t('toMenu')}</button></div>`; return; }
   $('cart-body').innerHTML = entries.map(([id, q]) => { const d = items.get(id), name = escapeHtml(dishName(d)); return `<div class="cart-item"><div class="cart-item-top"><div><h3>${name}</h3><p>${money(d.price)} ${t('perItem')}</p></div><button class="remove-item" data-action="remove" data-id="${id}" aria-label="${t('remove')}${name}">×</button></div><div class="cart-item-bottom">${controls(d)}<strong>${money(d.price * q)}</strong></div></div>`; }).join('');
 }
 function updateCart() {

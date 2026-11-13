@@ -64,3 +64,8 @@ body.choosing-language{overflow:hidden}
 @media(max-width:700px){.header-inner{gap:8px}.language-switch{padding:8px 10px}.header-cart{gap:5px}.header-cart>span[data-i18n]{font-size:11px}}
 .hero .eyebrow span[data-i18n]{font-size:inherit;vertical-align:baseline;margin:0}
 .section-heading h2 span[data-i18n],.cart-header h2 span[data-i18n],.order-dialog h2 span[data-i18n]{color:var(--ink)}
+.sparkle-icon{display:inline-block;width:19px;height:19px;flex:none;color:var(--accent);vertical-align:middle}
+.hero .eyebrow .sparkle-icon{margin-right:6px}
+.order-mark.sparkle-icon{width:32px;height:32px}
+.empty-cart .sparkle-icon,.photo-placeholder .sparkle-icon{width:43px;height:43px}
+.photo-placeholder .sparkle-icon{color:#bdac96}

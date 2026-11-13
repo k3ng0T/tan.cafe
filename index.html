@@ -7,7 +7,7 @@
   <meta name="description" content="TAN.cafe">
   <title>Меню — ТАҢ Family Cafe</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body class="choosing-language">
   <div class="intro-screen" id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="language-heading">
@@ -38,7 +38,7 @@
   </div></header>
   <main id="top" inert>
     <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy"><p class="eyebrow"><span>✳</span> <span data-i18n="family">СЕМЕЙНОЕ КАФЕ</span></p><h1 id="hero-title"><span data-i18n="hero1">Вкусные моменты</span><br><em data-i18n="hero2">начинаются здесь.</em></h1><p class="hero-description" data-i18n="description">Выбирайте любимые блюда и покажите свой выбор официанту.</p><a class="primary-button" href="#menu"><span data-i18n="choose">Выбрать блюда</span><svg class="button-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 19 19 5M7 5h12v12"/></svg></a></div>
+      <div class="hero-copy"><p class="eyebrow"><svg class="sparkle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5c.45 5.4 2.1 7.05 7.5 7.5-5.4.45-7.05 2.1-7.5 7.5-.45-5.4-2.1-7.05-7.5-7.5C9.9 9.55 11.55 7.9 12 2.5Z" fill="currentColor"/><path d="M19 15.5c.18 2.1.82 2.74 2.9 2.92-2.08.18-2.72.82-2.9 2.92-.18-2.1-.82-2.74-2.9-2.92 2.08-.18 2.72-.82 2.9-2.92Z" fill="currentColor"/></svg> <span data-i18n="family">СЕМЕЙНОЕ КАФЕ</span></p><h1 id="hero-title"><span data-i18n="hero1">Вкусные моменты</span><br><em data-i18n="hero2">начинаются здесь.</em></h1><p class="hero-description" data-i18n="description">Выбирайте любимые блюда и покажите свой выбор официанту.</p><a class="primary-button" href="#menu"><span data-i18n="choose">Выбрать блюда</span><svg class="button-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 19 19 5M7 5h12v12"/></svg></a></div>
       <div class="hero-image"><img src="assets/breakfast.png" alt="" fetchpriority="high"><span data-i18n="serving">Иллюстрация сервировки</span></div>
     </section>
     <section class="menu-section wrap" id="menu" aria-labelledby="menu-title"><div class="section-heading"><div><p class="eyebrow" data-i18n="love">ВЫБИРАЙТЕ С ЛЮБОВЬЮ</p><h2 id="menu-title"><span data-i18n="ourMenu">Наше меню</span><span>.</span></h2></div><p data-i18n="prices">Все цены в тенге ₸</p></div>
@@ -51,7 +51,7 @@
   <button class="mobile-cart" id="mobile-cart" hidden inert><span><span data-i18n="cart">Корзина</span> · <b id="mobile-cart-count"></b></span><strong id="mobile-cart-total"></strong><span aria-hidden="true">→</span></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <dialog id="cart-dialog" class="cart-dialog" aria-labelledby="cart-heading"><div class="cart-shell"><div class="cart-header"><div><p class="eyebrow" data-i18n="yourChoice">ВАШ ВЫБОР</p><h2 id="cart-heading"><span data-i18n="cart">Корзина</span><span>.</span></h2></div><button class="icon-button" id="close-cart" aria-label="Закрыть корзину">×</button></div><div class="cart-body" id="cart-body"></div><div class="cart-footer" id="cart-footer" hidden><div class="cart-total"><span data-i18n="total">Итого</span><strong id="cart-total"></strong></div><button class="primary-button checkout-button" id="review-order"><span data-i18n="showWaiter">Показать официанту</span><span aria-hidden="true">→</span></button><p data-i18n="notSent">Заказ не отправляется автоматически.</p></div></div></dialog>
-  <dialog id="order-dialog" class="order-dialog" aria-labelledby="order-heading"><div class="order-top"><span class="order-mark">✳</span><button class="icon-button" id="close-order" aria-label="Закрыть заказ">×</button></div><p class="eyebrow">ТАҢ FAMILY CAFE</p><h2 id="order-heading"><span data-i18n="yourOrder">Ваш заказ</span><span>.</span></h2><p class="order-intro" data-i18n="showScreen">Покажите этот экран официанту</p><div id="order-summary"></div><button class="secondary-button back-button" id="back-to-cart" data-i18n="editOrder">Изменить заказ</button></dialog>
-  <script type="module" src="app.js?v=6"></script>
+  <dialog id="order-dialog" class="order-dialog" aria-labelledby="order-heading"><div class="order-top"><svg class="sparkle-icon order-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5c.45 5.4 2.1 7.05 7.5 7.5-5.4.45-7.05 2.1-7.5 7.5-.45-5.4-2.1-7.05-7.5-7.5C9.9 9.55 11.55 7.9 12 2.5Z" fill="currentColor"/><path d="M19 15.5c.18 2.1.82 2.74 2.9 2.92-2.08.18-2.72.82-2.9 2.92-.18-2.1-.82-2.74-2.9-2.92 2.08-.18 2.72-.82 2.9-2.92Z" fill="currentColor"/></svg><button class="icon-button" id="close-order" aria-label="Закрыть заказ">×</button></div><p class="eyebrow">ТАҢ FAMILY CAFE</p><h2 id="order-heading"><span data-i18n="yourOrder">Ваш заказ</span><span>.</span></h2><p class="order-intro" data-i18n="showScreen">Покажите этот экран официанту</p><div id="order-summary"></div><button class="secondary-button back-button" id="back-to-cart" data-i18n="editOrder">Изменить заказ</button></dialog>
+  <script type="module" src="app.js?v=7"></script>
 </body>
 </html>
